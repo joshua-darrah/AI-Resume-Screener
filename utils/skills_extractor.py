@@ -1,7 +1,7 @@
 from utils.skills import SKILLS
 
 def extract_skills(text):
-    found_skills[]
+    found_skills = []
 
     # Convert text to lowercase
     text = text.lower()
