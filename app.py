@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import os
+from utils.resume_parser import extract_text_from_docx, extract_text_from_pdf
+
 
 app = Flask(__name__)
 
@@ -30,7 +32,25 @@ def upload_resume():
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     file.save(filepath)
 
-    return f"Resume uploaded successfully: {file.filename}"
+    extracted_text = ""
+
+    if file.filename.endswith('.pdf'):
+        extracted_text = extract_text_from_pdf(filepath)
+
+    elif file.filename.endswith(".docx"):
+        extracted_text = extract_text_from_docx(filepath)
+
+    else:
+        return "Unsupported file format"
+
+    return f"""
+        <h2>Resume uploaded successfully: {file.filename}</h2>
+
+        <h3>Extracted Resume Text:</h3>
+
+        <pre>{extracted_text}</pre>
+
+        """
 
 if __name__ == "__main__":
     app.run(debug=True)
