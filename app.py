@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import os
 from utils.resume_parser import extract_text_from_docx, extract_text_from_pdf
-
+from utils.skills_extractor import extract_skills
 
 app = Flask(__name__)
 
@@ -43,9 +43,18 @@ def upload_resume():
     else:
         return "Unsupported file format"
 
+
+    skills = extract_skills(extracted_text)
+
     return f"""
         <h2>Resume uploaded successfully: {file.filename}</h2>
+        
+        <h3>Extracted Skills:</h3>
 
+        <ul>
+            {"".join(f'<li>{skill}' for skill in skills)}
+        </ul>
+        
         <h3>Extracted Resume Text:</h3>
 
         <pre>{extracted_text}</pre>
