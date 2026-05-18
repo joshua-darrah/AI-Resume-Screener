@@ -30,6 +30,8 @@ SKILLS = [
     "pytorch",
     "scikit-learn",
     "nlp",
+    "ai",
+    "ml",
 
     # Tools
     "git",
