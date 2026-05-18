@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import os
 from utils.resume_parser import extract_text_from_docx, extract_text_from_pdf
 from utils.skills_extractor import extract_skills
+from utils.matcher import match_resume_to_job
 
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ def upload_resume():
         return "No files uploaded"
 
     file = request.files['resume']
+    job_description = request.form['job_description']
 
     # Check if filename is empty
     if file.filename == '':
@@ -46,8 +48,15 @@ def upload_resume():
 
     skills = extract_skills(extracted_text)
 
+    match_score = match_resume_to_job(
+        extracted_text,
+        job_description
+    )
+
     return f"""
-        <h2>Resume uploaded successfully: {file.filename}</h2>
+        <h2>Resume Analysis Complete</h2>
+
+        <h3>Match Score: {match_score}%</h3>
         
         <h3>Extracted Skills:</h3>
 
