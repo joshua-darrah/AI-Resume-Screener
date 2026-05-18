@@ -10,7 +10,21 @@
 
     <form action="/uploads" method="POST" enctype="multipart/form-data">
         <input type="file" name="resume" required>
-        <button type="submit">Upload Resume</button>
+
+        <br><br>
+
+        <label>Job Description</label>
+        <br><br>
+
+        <textarea name="job_description"
+                    rows="10"
+                    cols="60"
+                    placeholder="Enter job description here"
+                    required
+        ></textarea>
+
+        <br><br>
+        <button type="submit">Analyze Resume</button>
 
     </form>
 </body>
