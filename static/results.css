@@ -1,0 +1,197 @@
+/* =============================================================
+   ScreenAI — Results Page Styles
+   Place this file in:  static/results.css
+   Requires:            static/style.css  (loaded first in HTML)
+   ============================================================= */
+
+/* ─────────────────────────────────────────
+   SCORE HERO CARD
+───────────────────────────────────────── */
+.res-score-card {
+  background: var(--surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.res-score-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--brand);         /* overridden by JS based on score */
+  letter-spacing: -0.03em;
+  transition: color 0.4s;
+}
+
+.res-score-denom {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #9a9e96;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+/* Verdict pill */
+.res-verdict-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  font-family: 'Sora', sans-serif;
+  /* colour set dynamically by JS */
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border-color: var(--brand-mid);
+  align-self: flex-start;
+  margin-top: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Score progress bar */
+.res-score-bar-track {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.res-score-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--brand);     /* overridden by JS */
+  width: 0%;
+  transition: width 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Tick labels under bar */
+.res-score-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #b0b4ac;
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────────────────
+   SKILLS
+───────────────────────────────────────── */
+.res-skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.res-skill-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1px solid var(--brand-mid);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.res-skill-tag:hover {
+  background: var(--brand-mid);
+  transform: translateY(-1px);
+}
+
+.res-skill-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--surface-2);
+  color: var(--text-muted-c);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+/* Empty skills state */
+.res-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  color: var(--text-muted-c);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────
+   EXTRACTED RESUME TEXT  (<pre> block)
+───────────────────────────────────────── */
+.res-extracted-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 1.75;
+  color: #3a3e36;
+  background: var(--surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  white-space: pre-wrap;       /* wrap long lines */
+  word-break: break-word;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-mid) transparent;
+}
+
+.res-extracted-text::-webkit-scrollbar {
+  width: 5px;
+}
+
+.res-extracted-text::-webkit-scrollbar-thumb {
+  background: var(--brand-mid);
+  border-radius: 100px;
+}
+
+/* Copy button */
+.res-copy-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+}
+
+/* ─────────────────────────────────────────
+   BACK / NEW ANALYSIS BUTTON
+───────────────────────────────────────── */
+.res-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand);
+  color: white;
+  text-decoration: none;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 10px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.res-back-btn:hover {
+  background: var(--brand-dark);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.res-back-btn:active {
+  transform: scale(0.99);
+}

@@ -53,22 +53,12 @@ def upload_resume():
         job_description
     )
 
-    return f"""
-        <h2>Resume Analysis Complete</h2>
-
-        <h3>Match Score: {match_score}%</h3>
-        
-        <h3>Extracted Skills:</h3>
-
-        <ul>
-            {"".join(f'<li>{skill}' for skill in skills)}
-        </ul>
-        
-        <h3>Extracted Resume Text:</h3>
-
-        <pre>{extracted_text}</pre>
-
-        """
+    return render_template(
+        "results.html",
+        match_score=match_score,
+        skills=skills,
+        extracted_text=extracted_text
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
